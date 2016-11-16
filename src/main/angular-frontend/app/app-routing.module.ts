@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditRecipeComponent
-  }
+  },
     {
     path: 'create',
     component: EditRecipeComponent
