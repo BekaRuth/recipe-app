@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <h1> {{title}} <small> Here is some bootstrap text with the small class.</small></h1>
-    <router-outlet></router-outlet>
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a routerLink="/" routerLinkActive="active"> Recipe Application </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a routerLink="/create" routerLinkActive="active">New Recipe</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
 </html>
