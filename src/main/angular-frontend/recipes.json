@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Lemon Herb Chicken",
+        "category": "Lunch/Dinner",
+        "photo": "./lemonHerbChicken.jpg",
+        "ingredients": ["2 skinless, boneless chicken breast halves","1 lemon","1 tablespoon olive oil","1 pinch dried oregano","2 sprigs fresh parsley, for garnish","salt and pepper to taste"],
+        "steps": ["Cut lemon in half, and squeeze juice from 1/2 lemon on chicken. Season with salt to taste. Let sit while you heat oil in a small skillet over medium low heat.", "When oil is hot, put chicken in skillet. As you saute chicken, add juice from other 1/2 lemon, pepper to taste, and oregano. Saute for 5 to 10 minutes each side, or until juices run clear. Serve with parsley for garnish."]
+    },
+    {
+        "id": 2,
+        "name": "Baked French Fries",
+        "category": "Appetizer",
+        "photo": "./bakedFrenchFries.jpg",
+        "ingredients": ["4 idaho potatoes","1 tablespoon olive oil","1 teaspoon garlic powder","1 teaspoon onion powder","1⁄8 teaspoon salt","1⁄8 teaspoon pepper","1⁄8 teaspoon cayenne pepper","1⁄4 cup parmesan cheese, grated "],
+        "steps": ["Preheat oven to 425","Wash potatoes and peel them if you like (I leave skins on for more crunch!) Cut potatoes in half lengthwise, and then in half lengthwise again. Cut into strips, as thin as possible. It's ok if some are a little thicker.","Place cut up fries in a big ziploc bag and add olive oil. Shake to coat.","In a small bowl, mix all spices, and then dump into bag. Shake to coat","Line 2 cookie sheets with foil. Spray lightly with cooking spray.","Arrange fries in a single layer on sheets (don't overlap too much) and sprinkle grated parmesan all over potatoes. Put in preheated oven and bake for 30-45 minutes. You want them to turn golden brown with some crispy edges. 4-5 of them on the outside may turn darker but they are still extremely tasty and just cook faster than the ones in the middle. Watch them closely for desired texture! Just make sure the parm cheese starts to become a golden brown color and potatoes are cooked through!"]
+    },
+    {
+        "id": 3,
+        "name": "Stuffed Peppers",
+        "category": "Lunch/Dinner",
+        "photo": "./stuffedPeppers.jpg",
+        "ingredients": ["4 large bell peppers (any color)","1 lb lean (at least 80%) ground beef","2 tablespoons chopped onion","1 cup cooked rice","1 teaspoon salt","1 clove garlic, finely chopped","1 can (15 oz) Muir Glen™ organic tomato sauce","3/4 cup shredded mozzarella cheese (3 oz) "],
+        "steps": ["Cut thin slice from stem end of each bell pepper to remove top of pepper. Remove seeds and membranes; rinse peppers. If necessary, cut thin slice from bottom of each pepper so they stand up straight. In 4-quart Dutch oven, add enough water to cover peppers. Heat to boiling; add peppers. Cook about 2 minutes; drain.","In 10-inch skillet, cook beef and onion over medium heat 8 to 10 minutes, stirring occasionally, until beef is brown; drain. Stir in rice, salt, garlic and 1 cup of the tomato sauce; cook until hot.","Heat oven to 350°F.","Stuff peppers with beef mixture. Stand peppers upright in ungreased 8-inch square glass baking dish. Pour remaining tomato sauce over peppers.","Cover tightly with foil. Bake 10 minutes. Uncover and bake about 15 minutes longer or until peppers are tender. Sprinkle with cheese."]
+    }
+]
