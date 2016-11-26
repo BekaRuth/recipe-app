@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { Recipe } from './recipe';
 import { RecipeService } from './recipe.service';
 
@@ -7,16 +7,14 @@ import { RecipeService } from './recipe.service';
   moduleId: module.id,
   selector: 'my-recipe-list',
   templateUrl: 'recipeList.component.html',
-  providers: [ RecipeService ],
-
-
+  providers: [ RecipeService ]
 })
 
 export class RecipeListComponent implements OnInit {
   errorMessage: string;
   recipes: Recipe[];
 
-  constructor (private recipeService: RecipeService) {}
+  constructor (private recipeService: RecipeService, private router: Router) {}
 
   ngOnInit() {
     this.getRecipes();
@@ -35,5 +33,9 @@ export class RecipeListComponent implements OnInit {
     .subscribe(
       recipe => this.recipes.push(recipe),
       error => this.errorMessage = <any>error);
+  }
+
+  gotoDetail(recipe: Recipe): void {
+    this.router.navigate(['/detail', recipe.id ]);
   }
 }
