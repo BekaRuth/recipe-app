@@ -1,1 +1,9 @@
-<p>Recipe Detail Component</p>
+<div *ngIf="recipe">
+  <h1>{{recipe.name}}</h1>
+  <img src={{recipe.photo}}/>
+  <h3>Category: <small>{{recipe.category}}</small></h3>
+  <h3>Ingredients: </h3>
+  <p>{{recipe.ingredients}}
+  <h3>Steps: </h3>
+  <p>{{recipe.steps}}</p>
+</div>

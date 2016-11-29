@@ -22,7 +22,7 @@ export class RecipeListComponent implements OnInit {
 
   getRecipes() {
     this.recipeService.getRecipes()
-    .subscribe(
+    .then(
       recipes => this.recipes = recipes,
       error => this.errorMessage = <any>error);
   }
@@ -30,7 +30,7 @@ export class RecipeListComponent implements OnInit {
   addRecipe (name:string) {
     if (!name) {return;}
     this.recipeService.addRecipe(name)
-    .subscribe(
+    .then(
       recipe => this.recipes.push(recipe),
       error => this.errorMessage = <any>error);
   }
