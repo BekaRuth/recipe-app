@@ -3,7 +3,11 @@
   <img src={{recipe.photo}}/>
   <h3>Category: <small>{{recipe.category}}</small></h3>
   <h3>Ingredients: </h3>
-  <p>{{recipe.ingredients}}
+  <ul *ngFor="let ingredients of recipe.ingredients">
+    <li>{{ingredients}}</li>
+  </ul>
   <h3>Steps: </h3>
-  <p>{{recipe.steps}}</p>
+  <ul *ngFor="let steps of recipe.steps">
+    <li>{{steps}}</li>
+  </ul>
 </div>
