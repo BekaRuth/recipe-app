@@ -1,13 +1,3 @@
 <div *ngIf="recipe">
   <h1 id="recipe-name">{{recipe.name}}</h1>
-  <img src={{recipe.photo}}/>
-  <h3 id="recipe-category">Category: <small>{{recipe.category}}</small></h3>
-  <h3 id="recipe-ingredients">Ingredients: </h3>
-  <ul>
-    <li *ngFor="let ingredients of recipe.ingredients">{{ingredients}}</li>
-  </ul>
-  <h3 id="recipe-steps">Steps: </h3>
-  <ol>
-    <li *ngFor="let steps of recipe.steps">{{steps}}</li>
-  </ol>
 </div>

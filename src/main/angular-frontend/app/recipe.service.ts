@@ -8,7 +8,7 @@ import { Recipe }           from './recipe';
 
 @Injectable()
 export class RecipeService {
-  private recipesUrl = 'app/recipes.json';  // URL to web API
+  private recipesUrl = 'http://localhost:3002/recipedata';  // URL to web API
 
   constructor (private http: Http) {}
 
@@ -36,7 +36,9 @@ export class RecipeService {
 
   private extractData(res: Response) {
     let body = res.json();
-    return body.data || { };
+    //console.log(res.json());
+    return body;
+    //return body.data || { };
   }
 
   private handleError (error: Response | any) {
