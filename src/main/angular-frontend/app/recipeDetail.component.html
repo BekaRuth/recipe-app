@@ -1,3 +1,16 @@
 <div *ngIf="recipe">
-  <h1 id="recipe-name">{{recipe.name}}</h1>
+  <div class="col-md-4">
+    <h1 id="recipe-name">{{recipe.name}}</h1>
+    <img src="./photos/{{recipe.image}}.jpg">
+  </div>
+  <div class="col-md-8">
+    <h2 style="padding:10px">Ingredients</h2>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">{{ingredient}}</li>
+    </ul>
+    <h2 style="padding:10px">Directions</h2>
+    <ol>
+      <li *ngFor="let instruction of recipe.instructions">{{instruction}}</li>
+    </ol>
+  </div>
 </div>
