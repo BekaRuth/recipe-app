@@ -1,13 +1,14 @@
-<h1 id="recipe-title">Recipes</h1>
+<h1 class="col-md-12" id="recipe-title">Recipes</h1>
 
-<div>
+<div class="col-md-12">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for Recipes">
+      <input type="text" [(ngModel)]="queryString" id="search" class="form-control" placeholder="Search for Recipes">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <button class="btn btn-default" type="button">Search</button>
       </span>
 </div>
-<div *ngFor="let recipe of recipes" class=col-md-4 (click)="gotoDetail(recipe)">
+
+<div *ngFor="let recipe of recipes | FilterPipe: queryString" class=col-md-4 (click)="gotoDetail(recipe)">
     <div class="center" style="padding:10px">
         <img src="./photos/{{recipe.image}}.jpg">
         <h3 id="recipe-name">{{recipe.name}}</h3>

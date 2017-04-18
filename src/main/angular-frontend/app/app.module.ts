@@ -5,6 +5,7 @@ import { AppComponent }  from './app.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { HttpModule, JsonpModule } from '@angular/http';
 import './rxjs-extensions';
+import {FilterPipe} from './pipes';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import './rxjs-extensions';
     AppRoutingModule,
     HttpModule,
     JsonpModule ],
-  declarations: [ AppComponent, routedComponents ],
+  declarations: [ AppComponent, routedComponents , FilterPipe ],
   bootstrap:    [ AppComponent ]
 })
 

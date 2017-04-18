@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipe } from './recipe';
 import { RecipeService } from './recipe.service';
+import {FilterPipe} from './pipes'
 
 @Component({
   moduleId: module.id,
