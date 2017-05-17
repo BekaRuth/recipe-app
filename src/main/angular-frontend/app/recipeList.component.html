@@ -10,7 +10,7 @@
 
 <div *ngFor="let recipe of recipes | FilterPipe: queryString" class=col-md-4 (click)="gotoDetail(recipe)">
     <div class="center" style="padding:10px">
-        <img src="./photos/{{recipe.image}}.jpg">
+        <img id="recipe-photo" src="./photos/{{recipe.image}}.jpg">
         <h3 id="recipe-name">{{recipe.name}}</h3>
     </div>
 </div>

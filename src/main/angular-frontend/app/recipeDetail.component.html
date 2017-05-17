@@ -6,11 +6,11 @@
   <div class="col-md-8">
     <h2 style="padding:10px">Ingredients</h2>
     <ul>
-      <li *ngFor="let ingredient of recipe.ingredients">{{ingredient}}</li>
+      <li id="recipe-ingredients" *ngFor="let ingredient of recipe.ingredients">{{ingredient}}</li>
     </ul>
     <h2 style="padding:10px">Directions</h2>
     <ol>
-      <li *ngFor="let instruction of recipe.instructions">{{instruction}}</li>
+      <li id="recipe-steps" *ngFor="let instruction of recipe.instructions">{{instruction}}</li>
     </ol>
   </div>
 </div>

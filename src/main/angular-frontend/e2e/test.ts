@@ -5,7 +5,6 @@ describe('recipe application', function() {
     const recipePhoto = element(by.id('recipe-photo'));
     const recipeTitle = element(by.id('recipe-title'));
     const recipeName = element(by.id('recipe-name'));
-    const recipeCategory = element(by.id('recipe-category'));
     const recipeIngredients = element(by.id('recipe-ingredients'));
     const recipeSteps = element(by.id('recipe-steps'));
     const headerTitle = element(by.id('header-title'));
@@ -23,10 +22,6 @@ describe('recipe application', function() {
         recipePhoto.click();
         browser.sleep(400);
         expect(recipeName.isDisplayed()).toBe(true);
-    });
-
-    it('the recipeDetails page displays the category', function () {
-        expect(recipeCategory.isDisplayed()).toBe(true);
     });
 
     it('the recipeDetails page displays the ingredients', function () {
