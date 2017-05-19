@@ -1,9 +1,33 @@
-<p>Edit Recipe Component</p>
-<!--<label>New Recipe id: <input #newRecipeId /></label>
-<label>New Recipe name: <input #newRecipeName /></label>
-<label>New Recipe category: <input #newRecipeCategory /></label>
-<label>New Recipe photo: <input #newRecipePhoto /></label>
-<label>New Recipe ingredients: <input #newRecipeIngredients /></label>
-<label>New Recipe steps: <input #newRecipeSteps /></label>
-<button (click)="addRecipe(newRecipeId.value, newRecipeName.value, newRecipeCategory.value, newRecipePhoto.value, newRecipeIngredients.value, newRecipeSteps.value)">
-    Add Recipe</button>-->
+<!--If Adding Mode-->
+<h2>Add Recipe</h2>
+<form>
+    <div class="form-group">
+        <h3> Name </h3>
+        <div class="col-4">
+            <input class="form-control" placeholder="Enter Recipe Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <h3> Description </h3>
+        <textarea rows="3" class="form-control" placeholder="Enter Description"></textarea>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-secondary btn-lg">Add Ingredients</button>
+    </div>
+    <div class="form-group">
+        <h3> Directions </h3>
+        <table>
+            <tr *ngFor="let step of steps">
+                    <span class="input-group-addon">{{step.id}}. </span>
+                    <input type="text" class="form-control" ng-model="step.name" name="" placeholder="Step {{step.id}}">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-outline-warning" ng-show="$last" (click)="removeStep()">Remove Step</button>
+                    </span>
+            </tr>
+        </table>
+        <button class="btn btn-primary" (click)="addNewStep()">Add Step</button>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-success btn-lg">Add Recipe</button>
+    </div>
+</form>

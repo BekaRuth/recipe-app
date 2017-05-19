@@ -11,6 +11,22 @@ import { RecipeService } from './recipe.service';
 })
 
 export class EditRecipeComponent {
+  steps : Array<Object>;
+
+  constructor(){
+    this.steps= [{ id: '1' }, { id: '2' }];
+  }
+
+  addNewStep() {
+    var newItemNo = this.steps.length + 1;
+    this.steps.push({ 'id': newItemNo });
+  };
+
+  removeStep() {
+    var lastItem = this.steps.length - 1;
+    this.steps.splice(lastItem);
+  };
+}
   // recipes: Recipe[];
   // errorMessage: string;
 
@@ -34,4 +50,3 @@ export class EditRecipeComponent {
   //           recipe  => this.recipes.push(recipe),
   //           error =>  this.errorMessage = <any>error);
   //     }
-}
