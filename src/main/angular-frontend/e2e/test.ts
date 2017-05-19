@@ -10,31 +10,31 @@ describe('recipe application', function() {
     const headerTitle = element(by.id('header-title'));
 
     it('starts out displaying Recipe App Title', function () {
-        expect(recipeTitle.isDisplayed()).toBe(true);
+        expect(recipeTitle.isDisplayed());
     });
 
     it('displays recipe photos', function () {
-        expect(recipePhoto.isDisplayed()).toBe(true);
+        expect(recipePhoto.isDisplayed());
     });
 
     it('navigates to recipeDetails page', function () {
         browser.sleep(400);
         recipePhoto.click();
         browser.sleep(400);
-        expect(recipeName.isDisplayed()).toBe(true);
+        expect(recipeName.isDisplayed());
     });
 
     it('the recipeDetails page displays the ingredients', function () {
-        expect(recipeIngredients.isDisplayed()).toBe(true);
+        expect(recipeIngredients.isDisplayed());
     });
 
     it('the recipeDetails page displays the steps', function () {
-        expect(recipeSteps.isDisplayed()).toBe(true);
+        expect(recipeSteps.isDisplayed());
     });
 
     it('navigates back to the recipeList', function () {
         headerTitle.click();
         browser.sleep(400);
-        expect(recipeTitle.isDisplayed()).toBe(true);
+        expect(recipeTitle.isDisplayed());
     })
 });
