@@ -12,7 +12,6 @@ app.use(function (req, res, next) {
 var database_results = {
         "recipe": [],
         "recipeingredient": [],
-        "measure": [],
         "recipeinstruction": [],
         "ingredient": []
     };
@@ -35,7 +34,7 @@ app.get('/recipedata', function (req, res) {
     var data = null;
 
     var check_for_completion = function() {
-        if ((database_results.recipe.length > 0) && (database_results.recipeingredient.length > 0) && (database_results.measure.length > 0) && (database_results.recipeinstruction.length > 0) && (database_results.ingredient.length> 0))
+        if ((database_results.recipe.length > 0) && (database_results.recipeingredient.length > 0) && (database_results.recipeinstruction.length > 0) && (database_results.ingredient.length> 0))
         {
             //iterate through all recipes
             for (var i = 0; i < database_results.recipe.length; i++)
@@ -53,8 +52,6 @@ app.get('/recipedata', function (req, res) {
                         var outer_amount = database_results.recipeingredient[j].amount;
                         var outer_name = '';
 
-                        var outer_measure_name = '';
-                        var outer_measure_id = database_results.recipeingredient[j].measure_id;
 
                         var outer_ingredient_id = database_results.recipeingredient[j].ingredient_id;
 
@@ -66,15 +63,7 @@ app.get('/recipedata', function (req, res) {
                             }
                         }
 
-                        for (var l = 0; l < database_results.measure.length; l++)
-                        {
-                            if (database_results.measure[l].id == outer_measure_id)
-                            {
-                                outer_measure_name = database_results.measure[l].name + ' ';
-                            }
-                        }
-
-                        database_results.recipe[i].ingredients.push(outer_amount + ' ' + outer_measure_name + outer_name);
+                        database_results.recipe[i].ingredients.push(outer_amount + ' ' + outer_name);
                     }
                 }
 
@@ -113,7 +102,6 @@ app.get('/recipedata', function (req, res) {
     database_results = {
         "recipe": [],
         "recipeingredient": [],
-        "measure": [],
         "recipeinstruction": [],
         "ingredient": []
     }
@@ -150,19 +138,6 @@ app.get('/recipedata', function (req, res) {
         console.log('querying RECIPEINSTRUCTION');
         if (!err) {
             database_results.recipeinstruction = rows;
-            check_for_completion();
-        }
-        else {
-            data = { success: false, message: err };
-            connection.end();
-            res.send(data);
-        }
-    });
-
-    connection.query('SELECT * FROM MEASURE' , function (err, rows, fields) {
-        console.log('querying MEASURE');
-        if (!err) {
-            database_results.measure = rows;
             check_for_completion();
         }
         else {
