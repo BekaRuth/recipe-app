@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Recipe } from './recipe';
 import { RecipeService } from './recipe.service';
 
@@ -10,11 +10,14 @@ import { RecipeService } from './recipe.service';
   providers: [ RecipeService ]
 })
 
-export class EditRecipeComponent {
+export class EditRecipeComponent implements OnInit {
+  public recipe: Recipe;
+  navigated = false;
   steps : Array<Object>;
+  mode : string;
 
-  constructor(){
-    this.steps= [{ id: '1' }, { id: '2' }];
+  constructor(private _recipeService: RecipeService, private route: ActivatedRoute){
+    this.steps = [{ id: '1' }, { id: '2' }];
   }
 
   addNewStep() {
@@ -26,27 +29,19 @@ export class EditRecipeComponent {
     var lastItem = this.steps.length - 1;
     this.steps.splice(lastItem);
   };
+
+  ngOnInit(): void {
+    this.route.params.forEach((params: Params) => {
+      if (params['id'] !== undefined) {
+        this.mode = 'Edit';
+        let id = +params['id'];
+        this.navigated = true;
+        this._recipeService.getRecipe(id)
+            .then(recipe => this.recipe = recipe);
+      } else {
+        this.mode = 'Create';
+        this.navigated = false;
+      }
+    });
+  }
 }
-  // recipes: Recipe[];
-  // errorMessage: string;
-
-  // constructor (private recipeService: RecipeService, private router: Router) {}
-
-  // ngOnInit() {
-  //     this.getRecipes();
-  //   }
-
-  // getRecipes() {
-  // this.recipeService.getRecipes()
-  // .then(
-  //   recipes => this.recipes = recipes,
-  //   error => this.errorMessage = <any>error);
-  // }
-
-  // addRecipe (id: number, name: string, category: string, photo: string, ingredients: string, steps: string) {
-  //     if (!name) { return; }
-  //     this.recipeService.addRecipe(id, name, category, photo, ingredients, steps)
-  //       .then(
-  //           recipe  => this.recipes.push(recipe),
-  //           error =>  this.errorMessage = <any>error);
-  //     }
