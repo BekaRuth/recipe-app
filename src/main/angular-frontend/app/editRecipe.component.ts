@@ -12,36 +12,40 @@ import { RecipeService } from './recipe.service';
 
 export class EditRecipeComponent implements OnInit {
   public recipe: Recipe;
-  navigated = false;
   steps : Array<Object>;
   mode : string;
+  myModel: any;
+
 
   constructor(private _recipeService: RecipeService, private route: ActivatedRoute){
-    this.steps = [{ id: '1' }, { id: '2' }];
+    this.recipe = {id:null,
+          name:'',
+          description:'',
+          image:'',
+          ingredients:[''],
+          instructions:[''] };
   }
-
-  addNewStep() {
-    var newItemNo = this.steps.length + 1;
-    this.steps.push({ 'id': newItemNo });
-  };
-
-  removeStep() {
-    var lastItem = this.steps.length - 1;
-    this.steps.splice(lastItem);
-  };
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       if (params['id'] !== undefined) {
         this.mode = 'Edit';
         let id = +params['id'];
-        this.navigated = true;
         this._recipeService.getRecipe(id)
             .then(recipe => this.recipe = recipe);
       } else {
         this.mode = 'Create';
-        this.navigated = false;
       }
     });
   }
+
+  addNewStep() {
+    var newItemNo = this.recipe.instructions.length + 1;
+    this.recipe.instructions.push('');
+  };
+
+  removeStep() {
+    var lastItem = this.recipe.instructions.length - 1;
+    this.recipe.instructions.splice(lastItem);
+  };
 }
