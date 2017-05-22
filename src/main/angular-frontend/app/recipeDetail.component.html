@@ -13,4 +13,5 @@
       <li id="recipe-steps" *ngFor="let instruction of recipe.instructions">{{instruction}}</li>
     </ol>
   </div>
+  <button type="button" class="btn btn-success btn-lg" (click)="gotoEdit(recipe)">Edit Recipe</button>
 </div>
