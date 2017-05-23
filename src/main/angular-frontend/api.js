@@ -16,7 +16,7 @@ var database_results = {
         "ingredient": []
     };
 
-// respond with "hello world" when a GET request is made to the homepage
+// Respond with "hello world" when a GET request is made to the homepage.
 app.get('/recipedata', function (req, res) {
     console.log('starting get!');
     var mysql = require('mysql');
@@ -36,19 +36,19 @@ app.get('/recipedata', function (req, res) {
     var check_for_completion = function() {
         if ((database_results.recipe.length > 0) && (database_results.recipeingredient.length > 0) && (database_results.recipeinstruction.length > 0) && (database_results.ingredient.length> 0))
         {
-            //iterate through all recipes
+            // Iterate through all recipes.
             for (var i = 0; i < database_results.recipe.length; i++)
             {
                 var outer_recipe_id = database_results.recipe[i].id;
                 database_results.recipe[i].ingredients = [];
                 database_results.recipe[i].instructions = [];
 
-                //iterate through recipeingredients looking for matches
+                // Iterate through recipeingredients looking for matches.
                 for (var j = 0; j < database_results.recipeingredient.length; j++)
                 {
                     if (database_results.recipeingredient[j].recipe_id == outer_recipe_id)
                     {
-                        //this ingredient is a part of this recipe!!
+                        // This ingredient is a part of this recipe.
                         var outer_amount = database_results.recipeingredient[j].amount;
                         var outer_name = '';
 
@@ -67,7 +67,7 @@ app.get('/recipedata', function (req, res) {
                     }
                 }
 
-                //iterate through recipeinstructions looking for matches
+                // Iterate through recipeinstructions looking for matches.
 
                 var searching = true;
                 var step_number = 1;
@@ -87,26 +87,22 @@ app.get('/recipedata', function (req, res) {
                 }
             }
 
-            //we're good to go! send the response
+            // We're good to go! send the response
             res.send(database_results.recipe);
         }
         else
         {
-            //do nothing; database_results is incomplete!
+            // Do nothing; Database_results is incomplete.
         }
     }
 
     console.log('querying mysql server!');
-    //connection.query('SELECT * FROM RECIPE LEFT OUTER JOIN RECIPEINSTRUCTION ON RECIPEINSTRUCTION.recipe_id = RECIPE.id JOIN RECIPEINGREDIENT ON RECIPE.id=RECIPEINGREDIENT.recipe_id JOIN INGREDIENT ON INGREDIENT.id=RECIPEINGREDIENT.ingredient_id LEFT OUTER JOIN MEASURE ON MEASURE.id = measure_id', function (err, rows, fields) {
-    //connection.query('SELECT * FROM RECIPE LEFT JOIN RECIPEINSTRUCTION ON RECIPE.id=RECIPEINSTRUCTION.RECIPE_ID', function (err, rows, fields) {
     database_results = {
         "recipe": [],
         "recipeingredient": [],
         "recipeinstruction": [],
         "ingredient": []
     }
-
-    //SELECT * FROM RECIPEINGREDIENT; SELECT * FROM RECIPEINSTRUCTION; SELECT * FROM MEASURE; SELECT * FROM RECIPEINSTRUCTION ; SELECT * FROM INGREDIENT', function (err, rows, fields) {
 
     connection.query('SELECT * FROM RECIPE' , function (err, rows, fields) {
         console.log('querying RECIPE');
@@ -159,20 +155,6 @@ app.get('/recipedata', function (req, res) {
             res.send(data);
         }
     });
-
-    /*
-    console.log('querying');
-        if (!err) {
-            data = rows;
-            connection.end();
-            res.send(data);
-        }
-        else {
-            data = { success: false, message: err };
-            connection.end();
-            res.send(data);
-        }
-    */
 })
 
 app.get('/', function (req, res) {
