@@ -161,6 +161,36 @@ app.get('/', function (req, res) {
     res.send('Hello World!')
 })
 
+app.get('/deleterecipe/:id', function(req, res) {
+    console.log('starting get!');
+    var mysql = require('mysql');
+    console.log('importing mysql!');
+    var connection = mysql.createConnection({
+        multipleStatements: true,
+        host: 'localhost',
+        user: 'root',
+        password: 'password',
+        database: 'cookbook'
+    });
+    console.log('connecting to mysql!');
+
+    connection.connect();
+
+    var data = null;
+    
+    connection.query('DELETE FROM recipe WHERE id = ?', [req.params.id], function(err, result) {
+        if (!err) {
+            res.send(data);
+        }
+        else {
+                data = { success: false, message: err };
+                connection.end();
+                console.log('Error with delete');
+                res.send(data); 
+        }
+    });
+});
+
 app.listen(3002, function () {
     console.log('Example app listening on port 3000!')
 })

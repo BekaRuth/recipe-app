@@ -9,7 +9,7 @@ import { Recipe }           from './recipe';
 @Injectable()
 export class RecipeService {
   private recipesUrl = 'http://localhost:3002/recipedata';  // URL to web API
-
+  private deleteUrl = 'http://localhost:3002/deleterecipe';
   constructor (private http: Http) {}
 
   getRecipes (): Promise<Recipe[]> {
@@ -32,6 +32,14 @@ export class RecipeService {
                .toPromise()
                .then(this.extractData)
                .catch(this.handleError);
+  }
+
+  deleteRecipe(id:number): Promise<Recipe[]> {
+    this.deleteUrl += '/' + id;
+    return this.http.get(this.deleteUrl)
+                    .toPromise()
+                    .then(this.extractData)
+                    .catch(this.handleError);
   }
 
   private extractData(res: Response) {
