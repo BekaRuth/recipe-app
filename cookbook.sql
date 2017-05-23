@@ -15,14 +15,14 @@ create table Ingredient (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 create table RecipeIngredient (recipe_id INT NOT NULL, 
 	ingredient_id INT NOT NULL, 
 	amount VARCHAR(100), 
-	CONSTRAINT fk_recipe FOREIGN KEY(recipe_id) REFERENCES Recipe(id),	
+	CONSTRAINT fk_recipe FOREIGN KEY(recipe_id) REFERENCES Recipe(id) ON DELETE CASCADE,	
 	CONSTRAINT fk_ingredient FOREIGN KEY(ingredient_id) REFERENCES Ingredient(id))
 	ENGINE=InnoDB DEFAULT CHARSET=utf8; 
 
 create table RecipeInstruction (recipe_id INT NOT NULL,
 	step INT,
 	instruction VARCHAR(500),
-	CONSTRAINT fk_recipe_id FOREIGN KEY(recipe_id) REFERENCES Recipe(id))
+	CONSTRAINT fk_recipe_id FOREIGN KEY(recipe_id) REFERENCES Recipe(id) ON DELETE CASCADE)
 	ENGINE=InnoDB DEFAULT CHARSET=utf8; 
 	
 INSERT INTO Ingredient (name) VALUES('Chicken Breast(s)'), ('Lemon(s)'), ('Olive Oil'), ('Dried Oregano'), ('Fresh Parsley'), ('Salt'), ('Pepper'), ('Flour'), ('Baking Soda'), ('Baking powder'), ('Butter'), ('White Sugar'), ('Egg(s)'), ('Vanilla Extract'), ('Mayonnaise'), ('Italian Bread Slice(s)'), ('Kraft Single(s)'), ('Crescent Roll(s)'), ('Semisweet Chocolate Chip(s)'), ('Avocado(s)'), ('Lime(s)'), ('Chicken Broth'), ('Cornstarch'), ('Tuna'), ('Brown Sugar'), ('Peanut Butter'), ('Salsa'), ('Onion(s)'), ('Tomatoe(s)');
