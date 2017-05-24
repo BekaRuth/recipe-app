@@ -18,9 +18,7 @@ describe('recipe application', function() {
     });
 
     it('navigates to recipeDetails page', function () {
-        browser.sleep(400);
         recipePhoto.click();
-        browser.sleep(400);
         expect(recipeName.isDisplayed());
     });
 
@@ -34,7 +32,6 @@ describe('recipe application', function() {
 
     it('navigates back to the recipeList', function () {
         headerTitle.click();
-        browser.sleep(400);
         expect(recipeTitle.isDisplayed());
     })
 });

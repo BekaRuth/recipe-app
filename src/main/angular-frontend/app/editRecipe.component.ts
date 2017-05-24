@@ -40,11 +40,10 @@ export class EditRecipeComponent implements OnInit {
   }
 
   addNewStep() {
-    var newItemNo = this.recipe.instructions.length + 1;
     this.recipe.instructions.push('');
   };
 
-  removeStep() {
+  removeLastStep() {
     var lastItem = this.recipe.instructions.length - 1;
     this.recipe.instructions.splice(lastItem);
   };
