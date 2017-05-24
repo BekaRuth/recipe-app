@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Recipe } from './recipe';
 import { RecipeService } from './recipe.service';
 
@@ -10,28 +10,41 @@ import { RecipeService } from './recipe.service';
   providers: [ RecipeService ]
 })
 
-export class EditRecipeComponent {
-  // recipes: Recipe[];
-  // errorMessage: string;
+export class EditRecipeComponent implements OnInit {
+  public recipe: Recipe;
+  steps : Array<Object>;
+  mode : string;
+  myModel: any;
 
-  // constructor (private recipeService: RecipeService, private router: Router) {}
 
-  // ngOnInit() {
-  //     this.getRecipes();
-  //   }
+  constructor(private _recipeService: RecipeService, private route: ActivatedRoute){
+    this.recipe = {id:null,
+          name:'',
+          description:'',
+          image:'',
+          ingredients:[''],
+          instructions:[''] };
+  }
 
-  // getRecipes() {
-  // this.recipeService.getRecipes()
-  // .then(
-  //   recipes => this.recipes = recipes,
-  //   error => this.errorMessage = <any>error);
-  // }
+  ngOnInit(): void {
+    this.route.params.forEach((params: Params) => {
+      if (params['id'] !== undefined) {
+        this.mode = 'Edit';
+        let id = +params['id'];
+        this._recipeService.getRecipe(id)
+            .then(recipe => this.recipe = recipe);
+      } else {
+        this.mode = 'Create';
+      }
+    });
+  }
 
-  // addRecipe (id: number, name: string, category: string, photo: string, ingredients: string, steps: string) {
-  //     if (!name) { return; }
-  //     this.recipeService.addRecipe(id, name, category, photo, ingredients, steps)
-  //       .then(
-  //           recipe  => this.recipes.push(recipe),
-  //           error =>  this.errorMessage = <any>error);
-  //     }
+  addNewStep() {
+    this.recipe.instructions.push('');
+  };
+
+  removeLastStep() {
+    var lastItem = this.recipe.instructions.length - 1;
+    this.recipe.instructions.splice(lastItem);
+  };
 }

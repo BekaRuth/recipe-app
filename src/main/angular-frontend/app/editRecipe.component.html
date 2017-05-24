@@ -1,9 +1,27 @@
-<p>Edit Recipe Component</p>
-<!--<label>New Recipe id: <input #newRecipeId /></label>
-<label>New Recipe name: <input #newRecipeName /></label>
-<label>New Recipe category: <input #newRecipeCategory /></label>
-<label>New Recipe photo: <input #newRecipePhoto /></label>
-<label>New Recipe ingredients: <input #newRecipeIngredients /></label>
-<label>New Recipe steps: <input #newRecipeSteps /></label>
-<button (click)="addRecipe(newRecipeId.value, newRecipeName.value, newRecipeCategory.value, newRecipePhoto.value, newRecipeIngredients.value, newRecipeSteps.value)">
-    Add Recipe</button>-->
+<h2>{{mode}} Recipe</h2>
+<form>
+    <div class="form-group">
+        <h3> Name </h3>
+        <div>
+            <input class="form-control" ng-model="recipe.name" value="{{recipe.name}}" placeholder="Enter Recipe Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <h3> Description </h3>
+        <textarea rows="3" class="form-control"  ng-model="recipe.description" value="{{recipe.description}}" placeholder="Enter Description"></textarea>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-secondary btn-lg">Add Ingredients</button>
+    </div>
+    <div class="form-group">
+        <h3> Directions </h3>
+            <div *ngFor="let instruction of recipe.instructions">
+                <textarea class="form-control" ng-model="instruction" value="{{instruction}}" name="" placeholder="Enter Step"></textarea>
+            </div>
+            <button class="btn btn-primary" (click)="addNewStep()">Add Step</button>
+            <button type="button" class="btn btn-outline-warning" (click)="removeLastStep()">Remove Step</button>         
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-success btn-lg">{{mode}} Recipe</button>
+    </div>
+</form>
