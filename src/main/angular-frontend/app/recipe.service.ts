@@ -1,15 +1,17 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
+
 import 'rxjs/add/operator/toPromise';
 
+import { AppSettings }      from './app.settings';
 import { Recipe }           from './recipe';
 
 
 @Injectable()
 export class RecipeService {
-  private recipesUrl = 'http://localhost:3002/recipedata';  // URL to web API
-  private deleteUrl = 'http://localhost:3002/deleterecipe';
+  private recipesUrl = AppSettings.API_ENDPOINT + 'recipedata';  // URL to web API
+  private deleteUrl = AppSettings.API_ENDPOINT + 'deleterecipe';
   constructor (private http: Http) {}
 
   getRecipes (): Promise<Recipe[]> {
