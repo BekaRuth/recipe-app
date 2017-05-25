@@ -15,6 +15,8 @@ export class EditRecipeComponent implements OnInit {
   steps : Array<Object>;
   mode : string;
   myModel: any;
+  ingredientData: Array<Object>;
+  errorMessage: string;
 
 
   constructor(private _recipeService: RecipeService, private route: ActivatedRoute){
@@ -37,6 +39,12 @@ export class EditRecipeComponent implements OnInit {
         this.mode = 'Create';
       }
     });
+  }
+
+  getIngredients(){
+    this._recipeService.getIngredients()
+      .then(ingredientData => this.ingredientData = ingredientData,
+            error => this.errorMessage = <any>error);
   }
 
   addNewStep() {

@@ -175,6 +175,30 @@ app.get('/recipedata', function (req, res) {
     */
 })
 
+app.get('/ingredients', function(req, res) {
+    var mysql = require('mysql');
+    var connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'password',
+        database: 'cookbook'
+    });
+
+    connection.connect();
+    var data = null;
+    console.log('getting ingredients')
+    connection.query('SELECT * FROM INGREDIENT', function(err, result) {
+        if (!err) {
+            res.send(result);
+        }
+        else {
+            data = {success: false, message: err};
+            connection.end();
+            res.send(result);
+        }
+    });
+});
+
 app.get('/', function (req, res) {
     res.send('Hello World!')
 })
