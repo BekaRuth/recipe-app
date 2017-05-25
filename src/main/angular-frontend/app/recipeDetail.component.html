@@ -13,5 +13,20 @@
       <li id="recipe-steps" *ngFor="let instruction of recipe.instructions">{{instruction}}</li>
     </ol>
   </div>
-  <button type="button" class="btn btn-success btn-lg" (click)="gotoEdit(recipe)">Edit Recipe</button>
+  <div class="col-md-6"></div>
+  <button type="button" class="btn btn-primary" (click)="gotoEdit(recipe)">Edit</button>
+  <button type="button" class="btn btn-danger" (click)="modal.open()">Delete</button>
+
+  <modal #modal>
+    <modal-header [show-close]="true">
+      <h4 class="modal-title">Delete Recipe</h4>
+    </modal-header>
+    <modal-body>
+      Are you sure you want to delete "{{recipe.name}}"?
+    </modal-body>
+    <modal-footer>
+      <button type="button" class="btn btn-primary" routerLink="/" routerLinkActive="active" (click)="deleteRecipe(recipe.id)">Delete Recipe</button>
+      <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancel</button>
+    </modal-footer>
+  </modal>
 </div>
