@@ -16,3 +16,5 @@ _temp
 !wallaby.js
 !api.js
 !gulpfile.js
+!conf.js
+!e2e.js
