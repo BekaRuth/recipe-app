@@ -1,15 +1,19 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
+
 import 'rxjs/add/operator/toPromise';
 
+import { AppSettings }      from './app.settings';
 import { Recipe }           from './recipe';
 
 
 @Injectable()
 export class RecipeService {
-  private recipesUrl = 'http://localhost:3002/recipedata';  // URL to web API
-  private ingredientsUrl = 'http://localhost:3002/ingredients';
+  private recipesUrl = AppSettings.API_ENDPOINT + 'recipedata';  // URL to web API
+  private deleteUrl = AppSettings.API_ENDPOINT + 'deleterecipe';
+  private ingredientsUrl = AppSettings.API_ENDPOINT + 'ingredients';
+
   constructor (private http: Http) {}
 
   getRecipes(): Promise<Recipe[]> {
@@ -39,6 +43,14 @@ export class RecipeService {
                   .toPromise()
                   .then(this.extractData)
                   .catch(this.handleError);
+  }
+
+  deleteRecipe(id:number): Promise<Recipe[]> {
+    this.deleteUrl += '/' + id;
+    return this.http.get(this.deleteUrl)
+                    .toPromise()
+                    .then(this.extractData)
+                    .catch(this.handleError);
   }
 
   private extractData(res: Response) {

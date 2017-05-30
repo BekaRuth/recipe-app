@@ -7,6 +7,12 @@ Simple Angular 2.0 application for storing recipes. This application is to be a 
 git clone https://github.com/bekaruth/recipe-app.git 
 ```
 
+Installs node modeules
+
+```
+npm install
+```
+
 
 Runs the TypeScript compiler and launches the app
 

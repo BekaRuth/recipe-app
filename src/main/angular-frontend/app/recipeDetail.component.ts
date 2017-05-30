@@ -15,6 +15,7 @@ import {RecipeService} from './recipe.service';
 export class RecipeDetailComponent implements OnInit {
   public recipe: Recipe;
   navigated = false;
+  errorMessage: string;
 
   constructor(private _recipeService: RecipeService, private route: ActivatedRoute, private router: Router) {}
 
@@ -31,6 +32,12 @@ export class RecipeDetailComponent implements OnInit {
     });
   }
 
+  deleteRecipe(id:number) {
+    this._recipeService.deleteRecipe(id)
+    .then(
+      error => this.errorMessage = <any>error);
+  }
+  
   gotoEdit(recipe: Recipe): void {
     this.router.navigate(['edit/', recipe.id ]);
   }
