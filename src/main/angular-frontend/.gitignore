@@ -15,3 +15,4 @@ _temp
 !systemjs.config.js
 !wallaby.js
 !api.js
+!gulpfile.js
