@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { AppSettings }      from './app.settings';
 import { Recipe }           from './recipe';
+import { IngredientData }   from './recipe';
 
 
 @Injectable()
@@ -38,7 +39,7 @@ export class RecipeService {
                .catch(this.handleError);
   }
 
-  getIngredients(): Promise<Recipe[]> {
+  getIngredients(): Promise<IngredientData[]> {
       return this.http.get(this.ingredientsUrl)
                   .toPromise()
                   .then(this.extractData)

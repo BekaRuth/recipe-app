@@ -8,3 +8,10 @@ export class Recipe {
     public instructions: Array<String>
     ) { }
 }
+
+export class IngredientData {
+  constructor(
+    public id: number,
+    public name: string
+  ) { }
+}
