@@ -18,7 +18,7 @@ export class EditRecipeComponent implements OnInit {
   mode : string;
   myModel: any;
   errorMessage: string;
-  recipeIngredients: Array<Object> = [];
+  ingredientsToAdd: Array<any> = [];
   amount: string;
 
   constructor(private _recipeService: RecipeService, private route: ActivatedRoute){
@@ -60,13 +60,33 @@ export class EditRecipeComponent implements OnInit {
     this.recipe.instructions.splice(lastItem);
   };
 
-  addIngredient(ingredientId:number, amount:any): void {
-    this.recipeIngredients.push({ingredientId:ingredientId, amount: amount});
+  setIngredientsToAdd(){
+    for (var i = 0; i < this.recipe.ingredients.length; i++){
+      this.ingredientsToAdd.push(this.recipe.ingredients[i]);
+    }
+    console.log('setIngredientsToAdd');
+    console.log(this.recipe.ingredients);
+    console.log(this.ingredientsToAdd);
+  }
 
+  addIngredient(ingredientId:number, amount:any): void {
     for (var i = 0; i < this.ingredientData.length; i++) {
       if (ingredientId === this.ingredientData[i].id){
-        this.recipe.ingredients.push(amount + ' ' + this.ingredientData[i].name);
+        this.ingredientsToAdd.push(amount + ' ' + this.ingredientData[i].name);
       }
     }
+    console.log('addIngredient');
+    console.log(this.recipe.ingredients);
+    console.log(this.ingredientsToAdd);
+  }
+
+  addIngredients(){
+    this.recipe.ingredients = this.ingredientsToAdd;
+    // for (var i = 0; i < this.ingredientsToAdd.length; i++) {
+    //   this.recipe.ingredients.push(this.ingredientsToAdd[i]);
+    // }
+    // console.log('addIngredients');
+    // console.log(this.recipe.ingredients);
+    // console.log(this.ingredientsToAdd);
   }
 }
