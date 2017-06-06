@@ -13,7 +13,7 @@
     <div class="form-group">
         <h3> Ingredients </h3>
         <div *ngFor="let ingredient of recipe.ingredients">
-            <ul>
+            <ul *ngIf="ingredient">
                 <li class="h6"> {{ingredient}} </li>
             </ul>
         </div>
@@ -49,7 +49,7 @@
                 <!--Ingredients Amount Modal-->
                 <modal size="sm" #modalamount>
                     <modal-header [show-close]="true">
-                        How Much {{ingredient.name}}?
+                        What amount of {{ingredient.name}}?
                     </modal-header>
                     <modal-body>
                         <div class="input-group">

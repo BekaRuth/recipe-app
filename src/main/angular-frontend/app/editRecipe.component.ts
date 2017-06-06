@@ -27,7 +27,7 @@ export class EditRecipeComponent implements OnInit {
           name:'',
           description:'',
           image:'',
-          ingredients:[''],
+          ingredients:[],
           instructions:[''] };
   }
 
@@ -45,48 +45,56 @@ export class EditRecipeComponent implements OnInit {
     });
   }
 
-  getIngredients(){
+
+  /**
+    * Returns a list of ingredients from the database
+    */
+  getIngredients() {
     this._recipeService.getIngredients()
       .then(ingredientData => this.ingredientData = ingredientData,
-            error => this.errorMessage = <any>error);
+        error => this.errorMessage = <any>error);
   }
 
+  /**
+    * Adds a selection box for the user to enter in a new instruction
+    */
   addNewStep() {
     this.recipe.instructions.push('');
   };
 
+  /**
+    * Removes last instruction for the recipe
+    */
   removeLastStep() {
     var lastItem = this.recipe.instructions.length - 1;
     this.recipe.instructions.splice(lastItem);
   };
 
+  /**
+    * Creates initial list of ingredients to add to recipe in ingredients modal
+    */
   setIngredientsToAdd(){
     for (var i = 0; i < this.recipe.ingredients.length; i++){
       this.ingredientsToAdd.push(this.recipe.ingredients[i]);
     }
-    console.log('setIngredientsToAdd');
-    console.log(this.recipe.ingredients);
-    console.log(this.ingredientsToAdd);
   }
 
+  /**
+    * Takes ingredient and amount selected by user
+    * and adds it to list of ingredients to add to the recipe
+    */
   addIngredient(ingredientId:number, amount:any): void {
     for (var i = 0; i < this.ingredientData.length; i++) {
       if (ingredientId === this.ingredientData[i].id){
         this.ingredientsToAdd.push(amount + ' ' + this.ingredientData[i].name);
       }
     }
-    console.log('addIngredient');
-    console.log(this.recipe.ingredients);
-    console.log(this.ingredientsToAdd);
   }
 
+  /**
+    * Takes list of ingredients selected in ingredient modal and adds them to form
+    */
   addIngredients(){
     this.recipe.ingredients = this.ingredientsToAdd;
-    // for (var i = 0; i < this.ingredientsToAdd.length; i++) {
-    //   this.recipe.ingredients.push(this.ingredientsToAdd[i]);
-    // }
-    // console.log('addIngredients');
-    // console.log(this.recipe.ingredients);
-    // console.log(this.ingredientsToAdd);
   }
 }
