@@ -28,7 +28,7 @@
 <div class="card-columns">
 <div *ngFor="let recipe of recipes | FilterPipe: queryString" (click)="gotoDetail(recipe)">
     <div class="card">
-        <img id="recipe-photo" class="card-img-top" src="./photos/{{recipe.image}}.jpg" >
+        <img id="recipe-photo" class="card-img-top" style="width:100%" src="./photos/{{recipe.image}}.jpg" >
         <div id="recipe-name" class="card-header">{{recipe.name}}</div>
         <div class="card-block">
           <cite style="text-overflow: ellipsis">{{recipe.description}}</cite>
