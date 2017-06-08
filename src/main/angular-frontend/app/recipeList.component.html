@@ -8,9 +8,12 @@
       </span>
 </div>
 
-<div *ngFor="let recipe of recipes | FilterPipe: queryString" class=col-md-4 (click)="gotoDetail(recipe)">
-    <div class="center" style="padding:10px">
-        <img id="recipe-photo" src="./photos/{{recipe.image}}.jpg">
+
+<div *ngFor="let recipe of recipes | FilterPipe: queryString" (click)="gotoDetail(recipe)" class="col-md-4 card">
+    <div>
+        <img id="recipe-photo" src="./photos/{{recipe.image}}.jpg" class="card-img-top">
         <h3 id="recipe-name">{{recipe.name}}</h3>
+        <cite>{{recipe.description}}</cite>
+        <p>Recipe by: {{recipe.added_by}}</p>
     </div>
 </div>

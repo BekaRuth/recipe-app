@@ -22,6 +22,10 @@ export class EditRecipeComponent implements OnInit {
           name:'',
           description:'',
           image:'',
+          category:'',
+          addedBy:'',
+          pieBakeOff:null,
+          chiliCookOff:null,
           ingredients:[''],
           instructions:[''] };
   }
