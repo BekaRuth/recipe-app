@@ -1,19 +1,40 @@
-<h1 class="col-md-12" id="recipe-title">Recipes</h1>
-
-<div class="col-md-12">
+<div class="col-md-12" style="margin-top:20px;">
     <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          All Recipes
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">All Recipes</a>
+          <a class="dropdown-item" href="#">Breakfast</a>
+          <a class="dropdown-item" href="#">Dinner</a>
+          <a class="dropdown-item" href="#">Desserts</a>
+          <a class="dropdown-item" href="#">Appetizers</a>
+          <a class="dropdown-item" href="#">Drinks</a>
+        </div>
+      </div>
       <input type="text" [(ngModel)]="queryString" id="search" class="form-control" placeholder="Search for Recipes">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button">Search</button>
       </span>
+    </div>
 </div>
 
+<div class="row">
+   
+</div>
 
-<div *ngFor="let recipe of recipes | FilterPipe: queryString" (click)="gotoDetail(recipe)" class="col-md-4 card">
-    <div>
-        <img id="recipe-photo" src="./photos/{{recipe.image}}.jpg" class="card-img-top">
-        <h3 id="recipe-name">{{recipe.name}}</h3>
-        <cite>{{recipe.description}}</cite>
-        <p>Recipe by: {{recipe.added_by}}</p>
+<div class="col-md-12" style="margin-top:20px;">
+<div class="card-columns">
+<div *ngFor="let recipe of recipes | FilterPipe: queryString" (click)="gotoDetail(recipe)">
+    <div class="card">
+        <img id="recipe-photo" class="card-img-top" src="./photos/{{recipe.image}}.jpg" >
+        <div id="recipe-name" class="card-header">{{recipe.name}}</div>
+        <div class="card-block">
+          <cite style="text-overflow: ellipsis">{{recipe.description}}</cite>
+          <div class="card-footer">Recipe by: {{recipe.added_by}}</div>
+        </div>
     </div>
+</div>
+</div>
 </div>
