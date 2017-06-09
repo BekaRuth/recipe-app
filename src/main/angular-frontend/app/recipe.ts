@@ -1,5 +1,5 @@
 export class Recipe {
-  constructor(
+  constructor (
     public id: number,
     public name: string,
     public description: string,
@@ -10,7 +10,7 @@ export class Recipe {
 }
 
 export class IngredientData {
-  constructor(
+  constructor (
     public id: number,
     public name: string
   ) { }
