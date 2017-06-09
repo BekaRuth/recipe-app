@@ -1,27 +1,19 @@
 <div class="col-md-12" style="margin-top:20px;">
-    <div class="input-group">
-      <div class="input-group-btn">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          All Recipes
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">All Recipes</a>
-          <a class="dropdown-item" href="#">Breakfast</a>
-          <a class="dropdown-item" href="#">Dinner</a>
-          <a class="dropdown-item" href="#">Desserts</a>
-          <a class="dropdown-item" href="#">Appetizers</a>
-          <a class="dropdown-item" href="#">Drinks</a>
-        </div>
-      </div>
-      <input type="text" [(ngModel)]="queryString" id="search" class="form-control" placeholder="Search for Recipes">
-      <span class="input-group-btn">
+  <div class="input-group">
+    <input type="text" [(ngModel)]="queryString" id="search" class="form-control" placeholder="Search for Recipes">
+    <span class="input-group-btn">
         <button class="btn btn-default" type="button">Search</button>
       </span>
-    </div>
+  </div>
 </div>
 
-<div class="row">
-   
+<div class="col-md-12">
+  <button class="btn btn-secondary" (click)="queryString = ''">All Recipes</button>
+  <button class="btn btn-secondary" (click)="queryString = 'Breakfast'">Breakfast</button>
+  <button class="btn btn-secondary" (click)="queryString = 'Dinner'">Dinner</button>
+  <button class="btn btn-secondary" (click)="queryString = 'Desserts'">Desserts</button>
+  <button class="btn btn-secondary" (click)="queryString = 'Appetizers'">Appetizers</button>
+  <button class="btn btn-secondary" (click)="queryString = 'Drinks'">Drinks</button>
 </div>
 
 <div class="col-md-12" style="margin-top:20px;">
