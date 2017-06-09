@@ -4,7 +4,7 @@ import { Recipe } from './recipe';
 import { RecipeService } from './recipe.service';
 import {FilterPipe} from './pipes'
 
-@Component({
+@Component ({
   moduleId: module.id,
   selector: 'my-recipe-list',
   templateUrl: 'recipeList.component.html',
@@ -17,11 +17,11 @@ export class RecipeListComponent implements OnInit {
 
   constructor (private recipeService: RecipeService, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit () {
     this.getRecipes();
   }
 
-  getRecipes() {
+  getRecipes () {
     this.recipeService.getRecipes()
     .then(
       recipes => this.recipes = recipes,
@@ -36,7 +36,7 @@ export class RecipeListComponent implements OnInit {
       error => this.errorMessage = <any>error);
   }
 
-  gotoDetail(recipe: Recipe): void {
+  gotoDetail (recipe: Recipe): void {
     this.router.navigate(['/detail', recipe.id ]);
   }
 }

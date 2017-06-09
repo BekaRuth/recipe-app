@@ -8,20 +8,72 @@
     </div>
     <div class="form-group">
         <h3> Description </h3>
-        <textarea rows="3" class="form-control"  ng-model="recipe.description" value="{{recipe.description}}" placeholder="Enter Description"></textarea>
+        <textarea rows="3" class="form-control" ng-model="recipe.description" value="{{recipe.description}}" placeholder="Enter Description"></textarea>
     </div>
     <div class="form-group">
-        <button type="button" class="btn btn-secondary btn-lg">Add Ingredients</button>
+        <h3> Ingredients </h3>
+        <div *ngFor="let ingredient of recipe.ingredients">
+            <ul *ngIf="ingredient">
+                <li class="h6"> {{ingredient}} </li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="modal.open(); setIngredientsToAdd()">Add</button>
+        <button type="button" class="btn btn-outline-warning">Remove</button>
     </div>
     <div class="form-group">
         <h3> Directions </h3>
-            <div *ngFor="let instruction of recipe.instructions">
-                <textarea class="form-control" ng-model="instruction" value="{{instruction}}" name="" placeholder="Enter Step"></textarea>
-            </div>
-            <button class="btn btn-primary" (click)="addNewStep()">Add Step</button>
-            <button type="button" class="btn btn-outline-warning" (click)="removeLastStep()">Remove Step</button>         
+        <div *ngFor="let instruction of recipe.instructions">
+            <textarea class="form-control" ng-model="instruction" value="{{instruction}}" name="" placeholder="Enter Step"></textarea>
+        </div>
+        <button class="btn btn-primary" (click)="addNewStep()">Add Step</button>
+        <button type="button" class="btn btn-outline-warning" (click)="removeLastStep()">Remove Step</button>
     </div>
     <div class="form-group">
-        <button type="button" class="btn btn-success btn-lg">{{mode}} Recipe</button>
+        <button type="button" class="btn btn-success btn-lg">Submit</button>
     </div>
 </form>
+<!--Ingredients Modal-->
+<modal #modal>
+    <modal-header [show-close]="true">
+        <div class="modal-title">
+            <h4 *ngIf="mode=='Create'">Select ingredients </h4>
+            <h4 *ngIf="mode=='Edit'">Select ingredients for {{recipe.name}}.</h4>
+        </div>
+    </modal-header>
+    <modal-body>
+        <input type="text" [(ngModel)]="queryString" id="search" class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false" placeholder="Search for Ingredients">
+        <div class="pre-scrollable">
+            <div (click)="modalamount.open(ingredient.id); " class="col-md-4" *ngFor="let ingredient of ingredientData | FilterPipe: queryString">
+                <div class="link">{{ingredient.name}}</div>
+                <!--Ingredients Amount Modal-->
+                <modal size="sm" #modalamount>
+                    <modal-header [show-close]="true">
+                        What amount of {{ingredient.name}}?
+                    </modal-header>
+                    <modal-body>
+                        <div class="input-group">
+                            <input #amount class="form-control" ng-model="amount" placeholder="Enter amount" aria-describedby="basic-addon2">
+                            <span class="input-group-addon" id="basic-addon2">{{ingredient.name}}</span>
+                        </div>
+                    </modal-body>
+                    <modal-footer>
+                        <button type="button" class="btn btn-primary" (click)="addIngredient(ingredient.id,amount.value); modalamount.close()">Add</button>
+                        <button type="button" class="btn btn-secondary" (click)="modalamount.close()">Cancel</button>
+                    </modal-footer>
+                </modal>
+            </div>
+            <div>
+
+            </div>
+        </div>
+        Added Ingredients
+        <div>
+            {{ingredientsToAdd}}
+        </div>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-primary" (click)="modal.close(); addIngredients()">Add Ingredients</button>
+        <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancel</button>
+    </modal-footer>
+</modal>

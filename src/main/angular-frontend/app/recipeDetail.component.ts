@@ -4,7 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import {Recipe} from './recipe';
 import {RecipeService} from './recipe.service';
 
-@Component({
+@Component ({
   moduleId: module.id,
   selector: 'my-recipe-detail',
   templateUrl: 'recipeDetail.component.html',
@@ -19,7 +19,7 @@ export class RecipeDetailComponent implements OnInit {
 
   constructor(private _recipeService: RecipeService, private route: ActivatedRoute, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.route.params.forEach((params: Params) => {
       if (params['id'] !== undefined) {
         let id = +params['id'];
@@ -32,13 +32,13 @@ export class RecipeDetailComponent implements OnInit {
     });
   }
 
-  deleteRecipe(id:number) {
+  deleteRecipe (id:number) {
     this._recipeService.deleteRecipe(id)
     .then(
       error => this.errorMessage = <any>error);
   }
   
-  gotoEdit(recipe: Recipe): void {
+  gotoEdit (recipe: Recipe): void {
     this.router.navigate(['edit/', recipe.id ]);
   }
 }
