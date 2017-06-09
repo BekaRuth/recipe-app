@@ -8,7 +8,7 @@ import './rxjs-extensions';
 import {FilterPipe} from './pipes';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 
-@NgModule({
+@NgModule ({
   imports: [
     BrowserModule,
     FormsModule,

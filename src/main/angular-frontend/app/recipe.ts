@@ -1,5 +1,5 @@
 export class Recipe {
-  constructor(
+  constructor (
     public id: number,
     public name: string,
     public description: string,
@@ -11,4 +11,11 @@ export class Recipe {
     public ingredients: Array<String>,
     public instructions: Array<String>
     ) { }
+}
+
+export class IngredientData {
+  constructor (
+    public id: number,
+    public name: string
+  ) { }
 }

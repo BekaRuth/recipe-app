@@ -6,27 +6,30 @@ import 'rxjs/add/operator/toPromise';
 
 import { AppSettings }      from './app.settings';
 import { Recipe }           from './recipe';
+import { IngredientData }   from './recipe';
 
 
-@Injectable()
+@Injectable ()
 export class RecipeService {
   private recipesUrl = AppSettings.API_ENDPOINT + 'recipedata';  // URL to web API
   private deleteUrl = AppSettings.API_ENDPOINT + 'deleterecipe';
+  private ingredientsUrl = AppSettings.API_ENDPOINT + 'ingredients';
+
   constructor (private http: Http) {}
 
-  getRecipes (): Promise<Recipe[]> {
+  getRecipes () : Promise<Recipe[]> {
     return this.http.get(this.recipesUrl)
                     .toPromise()
                     .then(this.extractData)
                     .catch(this.handleError);
   }
 
-  getRecipe(id: number): Promise<Recipe> {
+  getRecipe( id: number) : Promise<Recipe> {
     return this.getRecipes()
       .then(recipes => recipes.find(recipe => recipe.id === id));
   }
 
-  addRecipe (name: string): Promise<Recipe> {
+  addRecipe (name: string) : Promise<Recipe> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
@@ -36,7 +39,14 @@ export class RecipeService {
                .catch(this.handleError);
   }
 
-  deleteRecipe(id:number): Promise<Recipe[]> {
+  getIngredients () : Promise<IngredientData[]> {
+      return this.http.get(this.ingredientsUrl)
+                  .toPromise()
+                  .then(this.extractData)
+                  .catch(this.handleError);
+  }
+
+  deleteRecipe (id:number) : Promise<Recipe[]> {
     this.deleteUrl += '/' + id;
     return this.http.get(this.deleteUrl)
                     .toPromise()
@@ -44,7 +54,7 @@ export class RecipeService {
                     .catch(this.handleError);
   }
 
-  private extractData(res: Response) {
+  private extractData (res: Response) {
     let body = res.json();
     //console.log(res.json());
     return body;
