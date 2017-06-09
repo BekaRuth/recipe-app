@@ -205,6 +205,7 @@ app.get('/ingredients', function(req, res) {
     console.log('getting ingredients')
     connection.query('SELECT * FROM INGREDIENT', function(err, result) {
         if (!err) {
+            connection.end();
             res.send(result);
         }
         else {
